@@ -139,8 +139,10 @@ module.exports = {
             /**
              * This method converts any PNG and JPEG images into optimized WebP. The old images are also kept.
              * Non-PNG/JPEG assets are completely ignored.
+             * 
+             * The `ignore` options contains a list of files or globs to ignore
              */
-            webpify("webpAssets"),
+            webpify("webpAssets", { ignore: [] }),
           ],
         },
       },
