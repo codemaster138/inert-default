@@ -9,6 +9,16 @@ const { sass, write, writeFile, copy, webpify, htmlBuild, singleHTMLBuild, markd
  */
 
 module.exports = {
+  /**
+   * This field contains addition configuration. The inert compiler itsself ignorest this info,
+   * but any given part of the pipeline is free to use this data.
+   */
+  custom: {
+    /**
+     * Site Title
+     */
+    title: 'Demo Blog'
+  },
   build: {
     /**
      * A list of additional methods and objects that will be available in ejs tags inside the templates
