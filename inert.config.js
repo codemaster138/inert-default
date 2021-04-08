@@ -2,7 +2,16 @@
  * The inert object is provided to us by the inert compiler. It contains a whole lot of helper functions
  * to do all kinds of things for us, like optimize images and compile sass or markdown
  */
-const { sass, write, writeFile, copy, webpify, htmlBuild, singleHTMLBuild, markdown } = inert;
+const {
+  sass,
+  write,
+  writeFile,
+  copy,
+  webpify,
+  htmlBuild,
+  singleHTMLBuild,
+  markdown,
+} = inert;
 
 /**
  * This is the inert configuration file. It contains all the information inert needs to build this template.
@@ -17,7 +26,7 @@ module.exports = {
     /**
      * Site Title
      */
-    title: 'Demo Blog'
+    title: "Demo Blog",
   },
   build: {
     /**
@@ -89,17 +98,13 @@ module.exports = {
       /**
        * Like `write`, but writes only a single file.
        */
-      writeFile(":output:/index.html")
+      writeFile(":output:/index.html"),
     ],
 
     /**
      * A list of objects.
      *
      * Each object point to a specfic folder and contains info about how to build it.
-     * 
-     * **Always place the build instructions for required assets before those for HTML.
-     * This ensures that assets have been copied and optimized and are available to the
-     * HTML build.**
      */
     folders: [
       {
@@ -136,7 +141,7 @@ module.exports = {
              * The `directory` option should **not** contain a path to a directory, but instead point to a
              * key in the `outDirs` object, which in turn contains a path.
              */
-            write("sassOutput"),
+            write("sassOutput", ".css"),
           ],
         },
       },
@@ -153,7 +158,7 @@ module.exports = {
             /**
              * This method converts any PNG and JPEG images into optimized WebP. The old images are also kept.
              * Non-PNG/JPEG assets are completely ignored.
-             * 
+             *
              * The `ignore` options contains a list of files or globs to ignore
              */
             webpify("webpAssets", { ignore: [] }),
@@ -184,7 +189,7 @@ module.exports = {
              * Like in the `sass` folder's pipeline, the `write` method takes the output of the previous `htmlBuild`
              * method and writes it to a file with the same name in the specified directory.
              */
-            write("postOutput"),
+            write("postOutput", '.html'),
           ],
         },
       },
