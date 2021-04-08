@@ -51,18 +51,18 @@ module.exports = {
      */
     outDirs: {
       /**
-       * Main output directory. The name htmlOutput is only a convention.
+       * Main output directory. MUST be named output
        */
-      htmlOutput: "public",
+      output: "public",
       /**
-       * Output for SASS Files. :htmlOutput: will be replaced with the value of the htmlOutput property.
+       * Output for SASS Files. :output: will be replaced with the value of the output property.
        * This also applies to all other properties of this object.
        */
-      sassOutput: ":htmlOutput:/style",
+      sassOutput: ":output:/style",
       /**
        * Output for other static assets
        */
-      assets: ":htmlOutput:/assets",
+      assets: ":output:/assets",
       /**
        * Here, we'll store optimized static assets
        */
@@ -74,7 +74,7 @@ module.exports = {
       /**
        * Output for posts
        */
-      postOutput: ":htmlOutput:/posts",
+      postOutput: ":output:/posts",
     },
 
     rootFile: "templates/home.ejs",
@@ -89,13 +89,17 @@ module.exports = {
       /**
        * Like `write`, but writes only a single file.
        */
-      writeFile(":htmlOutput:/index.html")
+      writeFile(":output:/index.html")
     ],
 
     /**
      * A list of objects.
      *
      * Each object point to a specfic folder and contains info about how to build it.
+     * 
+     * **Always place the build instructions for required assets before those for HTML.
+     * This ensures that assets have been copied and optimized and are available to the
+     * HTML build.**
      */
     folders: [
       {
