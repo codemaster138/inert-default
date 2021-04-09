@@ -7,7 +7,7 @@ const {
   write,
   writeFile,
   copy,
-  webpify,
+  imgOptimize,
   htmlBuild,
   singleHTMLBuild,
   markdown,
@@ -76,10 +76,6 @@ module.exports = {
        * Here, we'll store optimized static assets
        */
       optimizedAssets: ":assets:/optimized",
-      /**
-       * Output for optimized webp images
-       */
-      webpAssets: ":optimizedAssets:/webp",
       /**
        * Output for posts
        */
@@ -158,10 +154,14 @@ module.exports = {
             /**
              * This method converts any PNG and JPEG images into optimized WebP. The old images are also kept.
              * Non-PNG/JPEG assets are completely ignored.
+             * 
+             * The method will also create scaled copies of the image: 460w, 720w, 1080w and 2048w, although
+             * widths higher than the original image width are dropped (for an image 740px wide, only 460w
+             * and 720w versions are generated, not 1080w and 2048w)
              *
              * The `ignore` options contains a list of files or globs to ignore
              */
-            webpify("webpAssets", { ignore: [] }),
+            imgOptimize("optimizedAssets", { ignore: [] }),
           ],
         },
       },
